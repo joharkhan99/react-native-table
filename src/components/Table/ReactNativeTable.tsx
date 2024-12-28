@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Dimensions,
+  Image,
   ScrollView,
   Text,
   TouchableOpacity,
@@ -8,6 +9,95 @@ import {
 } from 'react-native';
 
 const ReactNativeTable = () => {
+  const rows = [
+    {
+      rank: 1,
+      profilePicture: 'my Image',
+      username: 'Johar Khan',
+      availableMoney: 1000,
+    },
+  ];
+
+  const columns = [
+    {
+      field: 'rank',
+      headerName: 'Ranking',
+      translationObject: 'rankingTable',
+      width: 100,
+      sortable: true,
+      sortType: 'number',
+      sortProperty: 'rank',
+      cellRenderer: (params: any) => {
+        let jsx = (
+          <View>
+            <Text>{params.rank}</Text>
+          </View>
+        );
+        return jsx;
+      },
+    },
+    {
+      field: 'profilePicture',
+      headerName: 'Image',
+      width: 70,
+      filter: false,
+      cellRenderer: (params: any) => {
+        let jsx = (
+          <View>
+            <Image
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/VeKings.png/220px-VeKings.png"
+              style={{
+                borderRadius: 999,
+                width: 40,
+                height: 40,
+              }}
+            />
+          </View>
+        );
+        return jsx;
+      },
+    },
+    {
+      field: 'username',
+      headerName: 'Username',
+      translationObject: 'rankingTable',
+      width: 100,
+      // flex: 1,
+      filter: false,
+      sortable: true,
+      sortType: 'string',
+      sortProperty: 'username',
+      cellRenderer: (params: any) => {
+        let jsx = (
+          <View>
+            <Text>{params.username}</Text>
+          </View>
+        );
+        return jsx;
+      },
+    },
+    {
+      field: 'availableMoney',
+      headerName: 'Available',
+      translationObject: 'rankingTable',
+      width: 120,
+      minWidth: 120,
+      flex: 1,
+      sortable: true,
+      sortType: 'number',
+      sortProperty: 'availableMoney',
+      cellRenderer: (params: any) => {
+        let jsx = (
+          <View>
+            <Text>${params.availableMoney}</Text>
+          </View>
+        );
+
+        return jsx;
+      },
+    },
+  ];
+
   return (
     <ScrollView
       style={{
@@ -33,6 +123,7 @@ const ReactNativeTable = () => {
                   alignItems: 'flex-start',
                   rowGap: 2,
                 }}>
+                {/* header/column */}
                 <View
                   style={{
                     flexDirection: 'row',
@@ -40,55 +131,33 @@ const ReactNativeTable = () => {
                     alignItems: 'flex-end',
                     columnGap: 10,
                   }}>
-                  {/* header/column */}
-                  <View
-                    // key={`subColumn-${index}`}
-                    style={{
-                      alignItems: 'flex-start',
-                      flexDirection: 'row',
-                      width: 100,
-                    }}>
-                    <TouchableOpacity
-                      style={{
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        justifyContent: 'flex-start',
-                        columnGap: 1,
-                      }}>
-                      <Text>headerName</Text>
-                      <Text
+                  {columns.map((col, index) => {
+                    return (
+                      <View
+                        key={index}
                         style={{
-                          transform: 'rotate(-90deg)',
+                          alignItems: 'flex-start',
+                          flexDirection: 'row',
+                          width: col.width,
                         }}>
-                        ➜
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
-
-                  <View
-                    // key={`subColumn-${index}`}
-                    style={{
-                      alignItems: 'flex-start',
-                      flexDirection: 'row',
-                      columnGap: 10,
-                      width: 100,
-                    }}>
-                    <TouchableOpacity
-                      style={{
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        justifyContent: 'flex-start',
-                        columnGap: 1,
-                      }}>
-                      <Text>headerName</Text>
-                      <Text
-                        style={{
-                          transform: 'rotate(-90deg)',
-                        }}>
-                        ➜
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
+                        <TouchableOpacity
+                          style={{
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            justifyContent: 'flex-start',
+                            columnGap: 1,
+                          }}>
+                          <Text>{col.headerName}</Text>
+                          <Text
+                            style={{
+                              transform: 'rotate(-90deg)',
+                            }}>
+                            ➜
+                          </Text>
+                        </TouchableOpacity>
+                      </View>
+                    );
+                  })}
                 </View>
 
                 {/* Rows */}
@@ -99,41 +168,18 @@ const ReactNativeTable = () => {
                     alignItems: 'center',
                     columnGap: 10,
                   }}>
-                  <View
-                    style={{
-                      width: 100,
-                    }}>
-                    <Text>Data 123</Text>
-                  </View>
-
-                  <View
-                    style={{
-                      width: 100,
-                    }}>
-                    <Text>Data 2</Text>
-                  </View>
-                </View>
-
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    justifyContent: 'flex-start',
-                    alignItems: 'center',
-                    columnGap: 10,
-                  }}>
-                  <View
-                    style={{
-                      width: 100,
-                    }}>
-                    <Text>Data 123</Text>
-                  </View>
-
-                  <View
-                    style={{
-                      width: 100,
-                    }}>
-                    <Text>Data 2</Text>
-                  </View>
+                  {rows.map((row, index) =>
+                    columns.map(col => {
+                      return (
+                        <View
+                          style={{
+                            width: col.width,
+                          }}>
+                          {col.cellRenderer({...row, width: col.width})}
+                        </View>
+                      );
+                    }),
+                  )}
                 </View>
               </View>
             </ScrollView>
