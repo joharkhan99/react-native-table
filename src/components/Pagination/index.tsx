@@ -1,7 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 
-const index = () => {
+interface Props {
+  rowsData: Object[];
+  setRowsData: (newRows: []) => void;
+  totalRows: number;
+}
+
+const index = ({rowsData, setRowsData, totalRows}: Props) => {
+  const [paginationState, setPaginationState] = useState({
+    firstPage: 0,
+    currentPage: 0,
+    pageAfterFirst: 1,
+    previousPage: null,
+    lastPage: 6,
+    pageFirstResultNumber: 1,
+    pageLastResultNumber: 1,
+  });
+
   return (
     <View
       style={{
@@ -12,11 +28,11 @@ const index = () => {
         columnGap: 5,
       }}>
       <View>
-        <Text>{`1 - 50 of 300`}</Text>
+        <Text>{`1 - 50 of ${totalRows}`}</Text>
       </View>
 
       <TouchableOpacity>
-        <Text>⇽</Text>
+        <Text>Previous</Text>
       </TouchableOpacity>
 
       <TouchableOpacity>
@@ -49,7 +65,7 @@ const index = () => {
       </TouchableOpacity>
 
       <TouchableOpacity>
-        <Text>⇾</Text>
+        <Text>Next</Text>
       </TouchableOpacity>
     </View>
   );

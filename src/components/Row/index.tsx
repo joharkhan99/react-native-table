@@ -7,7 +7,7 @@ interface Props {
 }
 
 const index = ({col, row}: Props) => {
-  return <View>{col.cellRenderer({...row, width: col.width})}</View>;
+  return col.cellRenderer({...row, width: col.width});
 };
 
 export default index;

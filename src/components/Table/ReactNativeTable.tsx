@@ -14,9 +14,16 @@ import Pagination from '../Pagination';
 interface Props {
   columns: any;
   rows: any;
+  pagination?: boolean;
+  rowsPerPage?: number;
 }
 
-const ReactNativeTable = ({columns, rows}: Props) => {
+const ReactNativeTable = ({
+  columns,
+  rows,
+  pagination = false,
+  rowsPerPage = 10,
+}: Props) => {
   const [rowsData, setRowsData] = useState([]);
   const [columnsData, setColumnsData] = useState([]);
 
@@ -24,6 +31,10 @@ const ReactNativeTable = ({columns, rows}: Props) => {
     setRowsData(rows);
     setColumnsData(columns);
   }, []);
+
+  useEffect(() => {
+    setRowsData(rows.slice(0, rowsPerPage));
+  }, [rowsPerPage]);
 
   return (
     <ScrollView
@@ -41,9 +52,7 @@ const ReactNativeTable = ({columns, rows}: Props) => {
           <View style={{flex: 1, width: Dimensions.get('screen').width}}>
             <ScrollView
               horizontal
-              contentContainerStyle={{flexDirection: 'column'}}
-              // ref={scrollRef}
-            >
+              contentContainerStyle={{flexDirection: 'column'}}>
               <View
                 style={{
                   flexDirection: 'column',
@@ -91,7 +100,13 @@ const ReactNativeTable = ({columns, rows}: Props) => {
         </View>
 
         {/* pagination */}
-        <Pagination />
+        {pagination && (
+          <Pagination
+            rowsData={rowsData}
+            setRowsData={setRowsData}
+            totalRows={rows.length}
+          />
+        )}
       </View>
     </ScrollView>
   );
