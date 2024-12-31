@@ -4,6 +4,6 @@
 
 import {AppRegistry} from 'react-native';
 import {name as appName} from './app.json';
-import ReactNativeTable from './src/components/Table/ReactNativeTable';
+import Example from './src/Example';
 
-AppRegistry.registerComponent(appName, () => ReactNativeTable);
+AppRegistry.registerComponent(appName, () => Example);
