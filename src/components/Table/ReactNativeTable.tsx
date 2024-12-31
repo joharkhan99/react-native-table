@@ -7,14 +7,25 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import Header from '../Header';
+import Row from '../Row';
+import Pagination from '../Pagination';
 
 const ReactNativeTable = () => {
   const rows = [
     {
       rank: 1,
-      profilePicture: 'my Image',
-      username: 'Johar Khan',
+      profilePicture:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/VeKings.png/220px-VeKings.png',
+      username: 'Mike Khan',
       availableMoney: 1000,
+    },
+    {
+      rank: 2,
+      profilePicture:
+        'https://d2gwgwt9a7yxle.cloudfront.net/what_is_user_id_in_net_banking_mobile_871b681e52.jpg',
+      username: 'jason smith',
+      availableMoney: '1.5M',
     },
   ];
 
@@ -43,16 +54,24 @@ const ReactNativeTable = () => {
       filter: false,
       cellRenderer: (params: any) => {
         let jsx = (
-          <View>
-            <Image
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/VeKings.png/220px-VeKings.png"
-              style={{
-                borderRadius: 999,
-                width: 40,
-                height: 40,
-              }}
-            />
-          </View>
+          <TouchableOpacity
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'flex-start',
+              alignItems: 'center',
+            }}>
+            <View>
+              <Image
+                src={params.profilePicture}
+                style={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: 100,
+                }}
+                resizeMode="cover"
+              />
+            </View>
+          </TouchableOpacity>
         );
         return jsx;
       },
@@ -70,7 +89,12 @@ const ReactNativeTable = () => {
       cellRenderer: (params: any) => {
         let jsx = (
           <View>
-            <Text>{params.username}</Text>
+            <Text
+              style={{
+                fontWeight: 900,
+              }}>
+              {params.username}
+            </Text>
           </View>
         );
         return jsx;
@@ -132,110 +156,39 @@ const ReactNativeTable = () => {
                     columnGap: 10,
                   }}>
                   {columns.map((col, index) => {
-                    return (
-                      <View
-                        key={index}
-                        style={{
-                          alignItems: 'flex-start',
-                          flexDirection: 'row',
-                          width: col.width,
-                        }}>
-                        <TouchableOpacity
-                          style={{
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            justifyContent: 'flex-start',
-                            columnGap: 1,
-                          }}>
-                          <Text>{col.headerName}</Text>
-                          <Text
-                            style={{
-                              transform: 'rotate(-90deg)',
-                            }}>
-                            ➜
-                          </Text>
-                        </TouchableOpacity>
-                      </View>
-                    );
+                    return <Header col={col} key={index} />;
                   })}
                 </View>
 
                 {/* Rows */}
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    justifyContent: 'flex-start',
-                    alignItems: 'center',
-                    columnGap: 10,
-                  }}>
-                  {rows.map((row, index) =>
-                    columns.map(col => {
+                {rows.map((row, index) => (
+                  <View
+                    key={index}
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'flex-start',
+                      alignItems: 'center',
+                      columnGap: 10,
+                    }}>
+                    {columns.map(col => {
                       return (
                         <View
                           style={{
                             width: col.width,
                           }}>
-                          {col.cellRenderer({...row, width: col.width})}
+                          <Row col={col} row={row} key={Math.random()} />
                         </View>
                       );
-                    }),
-                  )}
-                </View>
+                    })}
+                  </View>
+                ))}
               </View>
             </ScrollView>
           </View>
         </View>
 
         {/* pagination */}
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'flex-end',
-            marginVertical: 10,
-            alignItems: 'center',
-            columnGap: 5,
-          }}>
-          <View>
-            <Text>{`1 - 50 of 300`}</Text>
-          </View>
-
-          <TouchableOpacity>
-            <Text>⇽</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity>
-            <Text
-              style={{
-                color: 'lightblue',
-              }}>
-              1
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity>
-            <Text
-              style={{
-                color: '#ccc',
-              }}>
-              2
-            </Text>
-          </TouchableOpacity>
-
-          <Text>..</Text>
-
-          <TouchableOpacity>
-            <Text
-              style={{
-                color: '#ccc',
-              }}>
-              10
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity>
-            <Text>⇾</Text>
-          </TouchableOpacity>
-        </View>
+        <Pagination />
       </View>
     </ScrollView>
   );
