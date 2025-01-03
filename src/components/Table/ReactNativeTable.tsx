@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {
   Dimensions,
   Image,
@@ -14,27 +14,34 @@ import Pagination from '../Pagination';
 interface Props {
   columns: any;
   rows: any;
-  pagination?: boolean;
+  showPagination?: boolean;
   rowsPerPage?: number;
 }
 
 const ReactNativeTable = ({
   columns,
   rows,
-  pagination = false,
+  showPagination = false,
   rowsPerPage = 10,
 }: Props) => {
   const [rowsData, setRowsData] = useState([]);
   const [columnsData, setColumnsData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     setRowsData(rows);
     setColumnsData(columns);
   }, []);
 
-  useEffect(() => {
-    setRowsData(rows.slice(0, rowsPerPage));
-  }, [rowsPerPage]);
+  // useEffect(() => {
+  //   setRowsData(rows.slice(0, rowsPerPage));
+  // }, [rowsPerPage]);
+
+  const currenTableData = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * rowsPerPage;
+    const lastPageIndex = firstPageIndex + rowsPerPage;
+    return rowsData.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage, rowsData]);
 
   return (
     <ScrollView
@@ -73,7 +80,7 @@ const ReactNativeTable = ({
                 </View>
 
                 {/* Rows */}
-                {rowsData.map((row: any, index: number) => (
+                {currenTableData.map((row: any, index: number) => (
                   <View
                     key={index + 'row'}
                     style={{
@@ -100,11 +107,15 @@ const ReactNativeTable = ({
         </View>
 
         {/* pagination */}
-        {pagination && (
+        {showPagination && (
           <Pagination
             rowsData={rowsData}
             setRowsData={setRowsData}
             totalRows={rows.length}
+            currentPage={currentPage}
+            totalCount={rowsData.length}
+            pageSize={rowsPerPage}
+            onPageChange={page => setCurrentPage(page)}
           />
         )}
       </View>

@@ -207,8 +207,8 @@ const Example = () => {
     <ReactNativeTable
       rows={rows}
       columns={columns}
-      pagination={true}
-      rowsPerPage={4}
+      showPagination={true}
+      rowsPerPage={5}
     />
   );
 };
