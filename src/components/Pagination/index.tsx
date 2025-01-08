@@ -61,7 +61,7 @@ const index = ({
         justifyContent: 'flex-end',
         marginVertical: 10,
         alignItems: 'center',
-        columnGap: 15,
+        columnGap: 2,
       }}>
       <View>
         <Text>{`${
@@ -73,19 +73,25 @@ const index = ({
         disabled={currentPage === 1}
         onPress={onPrevious}
         style={{
-          backgroundColor: '#ddd',
-          padding: 4,
-          paddingHorizontal: 6,
-          borderRadius: 3,
+          borderRadius: 5,
+          height: 25,
+          width: 25,
         }}>
-        <Text>Previous</Text>
+        <Text
+          style={{
+            fontSize: 18,
+            textAlign: 'center',
+            color: currentPage === 1 ? '#ccc' : 'black',
+          }}>
+          {'<'}
+        </Text>
       </TouchableOpacity>
 
       <View
         style={{
           flexDirection: 'row',
           alignItems: 'center',
-          columnGap: 5,
+          columnGap: 2,
         }}>
         {paginationRange?.map((pageNumber: any, index: number) => {
           if (pageNumber === DOTS) {
@@ -99,12 +105,12 @@ const index = ({
           return (
             <TouchableOpacity
               style={{
-                backgroundColor:
-                  pageNumber === currentPage ? 'lightblue' : '#eee',
+                borderColor: pageNumber === currentPage ? '#1677ff' : '#eee',
+                borderWidth: pageNumber === currentPage ? 1 : 0,
                 padding: 2,
-                borderRadius: 100,
                 height: 25,
                 width: 25,
+                borderRadius: 5,
                 alignItems: 'center',
                 justifyContent: 'center',
               }}
@@ -112,7 +118,7 @@ const index = ({
               key={`page-${index}`}>
               <Text
                 style={{
-                  color: 'black',
+                  color: pageNumber === currentPage ? '#1677ff' : 'black',
                 }}>
                 {pageNumber}
               </Text>
@@ -125,12 +131,18 @@ const index = ({
         disabled={currentPage === lastPage}
         onPress={onNext}
         style={{
-          backgroundColor: '#ddd',
-          padding: 4,
-          paddingHorizontal: 6,
-          borderRadius: 3,
+          borderRadius: 5,
+          height: 25,
+          width: 25,
         }}>
-        <Text>Next</Text>
+        <Text
+          style={{
+            fontSize: 18,
+            textAlign: 'center',
+            color: currentPage === lastPage ? '#ccc' : 'black',
+          }}>
+          {'>'}
+        </Text>
       </TouchableOpacity>
     </View>
   );
