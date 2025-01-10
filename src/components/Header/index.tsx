@@ -21,12 +21,6 @@ const index = ({col}: Props) => {
           columnGap: 1,
         }}>
         <Text>{col.headerName}</Text>
-        <Text
-          style={{
-            transform: 'rotate(-90deg)',
-          }}>
-          ➜
-        </Text>
       </TouchableOpacity>
     </View>
   );

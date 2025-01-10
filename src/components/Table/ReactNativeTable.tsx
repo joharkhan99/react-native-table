@@ -1,45 +1,32 @@
 import React, {useEffect, useMemo, useState} from 'react';
-import {
-  Dimensions,
-  Image,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Dimensions, ScrollView, View} from 'react-native';
 import Header from '../Header';
 import Row from '../Row';
 import Pagination from '../Pagination';
+import {
+  ReactNativeTableColumn,
+  ReactNativeTableRowData,
+} from '../../utils/types';
 
-interface Props {
-  columns: any;
-  rows: any;
-  showPagination?: boolean;
-  rowsPerPage?: number;
+interface TableProps {
+  columns: ReactNativeTableColumn[];
+  data: ReactNativeTableRowData[];
+  pageSize?: number;
 }
 
-const ReactNativeTable = ({
-  columns,
-  rows,
-  showPagination = false,
-  rowsPerPage = 10,
-}: Props) => {
-  const [rowsData, setRowsData] = useState([]);
-  const [columnsData, setColumnsData] = useState([]);
+const ReactNativeTable = ({columns, data, pageSize = 10}: TableProps) => {
+  const [rowsData, setRowsData] = useState<ReactNativeTableRowData[]>([]);
+  const [columnsData, setColumnsData] = useState<ReactNativeTableColumn[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    setRowsData(rows);
+    setRowsData(data);
     setColumnsData(columns);
   }, []);
 
-  // useEffect(() => {
-  //   setRowsData(rows.slice(0, rowsPerPage));
-  // }, [rowsPerPage]);
-
   const currenTableData = useMemo(() => {
-    const firstPageIndex = (currentPage - 1) * rowsPerPage;
-    const lastPageIndex = firstPageIndex + rowsPerPage;
+    const firstPageIndex = (currentPage - 1) * pageSize;
+    const lastPageIndex = firstPageIndex + pageSize;
     return rowsData.slice(firstPageIndex, lastPageIndex);
   }, [currentPage, rowsData]);
 
@@ -64,7 +51,7 @@ const ReactNativeTable = ({
                 style={{
                   flexDirection: 'column',
                   alignItems: 'flex-start',
-                  rowGap: 2,
+                  rowGap: 5,
                 }}>
                 {/* header/column */}
                 <View
@@ -74,28 +61,33 @@ const ReactNativeTable = ({
                     alignItems: 'flex-end',
                     columnGap: 10,
                   }}>
-                  {columnsData.map((col: any, index: number) => {
-                    return <Header col={col} key={index + 'col'} />;
+                  {columnsData.map((col: ReactNativeTableColumn) => {
+                    return <Header col={col} key={`rn-column-${col.key}`} />;
                   })}
                 </View>
 
                 {/* Rows */}
-                {currenTableData.map((row: any, index: number) => (
+                {currenTableData.map((rowData: ReactNativeTableRowData) => (
                   <View
-                    key={index + 'row'}
+                    key={`rn-row-${rowData.key}`}
                     style={{
                       flexDirection: 'row',
                       justifyContent: 'flex-start',
                       alignItems: 'center',
                       columnGap: 10,
                     }}>
-                    {columnsData.map((col: any) => {
+                    {columnsData.map((col: ReactNativeTableColumn) => {
+                      console.log(`rn-cell-${rowData.key}-${col.key}`);
                       return (
                         <View
                           style={{
                             width: col.width,
                           }}>
-                          <Row col={col} row={row} key={Math.random()} />
+                          <Row
+                            col={col}
+                            rowData={rowData}
+                            key={`rn-cell-${rowData.key}-${col.key}`}
+                          />
                         </View>
                       );
                     })}
@@ -107,20 +99,19 @@ const ReactNativeTable = ({
         </View>
 
         {/* pagination */}
-        {showPagination && (
-          <Pagination
-            rowsData={rowsData}
-            setRowsData={setRowsData}
-            totalRows={rows.length}
-            currentPage={currentPage}
-            totalCount={rowsData.length}
-            pageSize={rowsPerPage}
-            onPageChange={page => setCurrentPage(page)}
-          />
-        )}
+        <Pagination
+          rowsData={rowsData}
+          setRowsData={setRowsData}
+          totalRows={data.length}
+          currentPage={currentPage}
+          totalCount={rowsData.length}
+          pageSize={pageSize}
+          onPageChange={page => setCurrentPage(page)}
+        />
       </View>
     </ScrollView>
   );
 };
 
+export type {ReactNativeTableColumn, ReactNativeTableRowData};
 export default ReactNativeTable;

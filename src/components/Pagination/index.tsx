@@ -13,7 +13,6 @@ interface Props {
   pageSize: number;
 }
 
-// const index = ({rowsData, setRowsData, totalRows}: Props) => {
 const index = ({
   onPageChange,
   totalCount,
@@ -21,16 +20,6 @@ const index = ({
   currentPage,
   pageSize,
 }: Props) => {
-  // const [paginationState, setPaginationState] = useState({
-  //   firstPage: 0,
-  //   currentPage: 0,
-  //   pageAfterFirst: 1,
-  //   previousPage: null,
-  //   lastPage: 6,
-  //   pageFirstResultNumber: 1,
-  //   pageLastResultNumber: 1,
-  // });
-
   const paginationRange = usePagination({
     currentPage,
     totalCount,
@@ -62,6 +51,7 @@ const index = ({
         marginVertical: 10,
         alignItems: 'center',
         columnGap: 2,
+        flexWrap: 'wrap',
       }}>
       <View>
         <Text>{`${
