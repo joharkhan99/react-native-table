@@ -2,7 +2,7 @@ import React from 'react';
 import ReactNativeTable, {
   ReactNativeTableColumn,
   ReactNativeTableRowData,
-} from './components/Table/ReactNativeTable';
+} from '../src/components/Table/ReactNativeTable';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
 
 const Example = () => {
