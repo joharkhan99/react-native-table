@@ -10,3 +10,9 @@ export interface ReactNativeTableRowData {
   key: string | number;
   [key: string]: any;
 }
+
+export interface PaginationOptions {
+  position?: "center" | "flex-start" | "flex-end" | "space-around" | "space-between" | "space-evenly";
+  nextButtonIcon?: React.ReactNode | string;
+  previousButtonIcon?: React.ReactNode | string;
+}

@@ -6,7 +6,7 @@ import ReactNativeTable, {
 import {Image, Text, TouchableOpacity, View} from 'react-native';
 
 const Example = () => {
-  const rows: ReactNativeTableRowData[] = [
+  const data: ReactNativeTableRowData[] = [
     {
       key: 1,
       rank: 1,
@@ -223,7 +223,7 @@ const Example = () => {
     },
   ];
 
-  return <ReactNativeTable data={rows} columns={columns} pageSize={8} />;
+  return <ReactNativeTable data={data} columns={columns} pageSize={4} />;
 };
 
 export default Example;
