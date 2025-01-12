@@ -18,6 +18,8 @@
     "url": "https://github.com/joharkhan99/react-native-table/issues"
   },
   "homepage": "https://github.com/joharkhan99/react-native-table#readme",
+  "main": "index.ts",
+  "types": "index.d.ts",
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",

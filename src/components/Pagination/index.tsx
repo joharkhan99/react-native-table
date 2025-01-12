@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
-import {DOTS, usePagination} from '../../hooks/usePagination';
-import {PaginationOptions} from '../../utils/types';
+import React, { useState } from 'react';
+import { Text, TouchableOpacity, View } from 'react-native';
+import { DOTS, usePagination } from '../../hooks/usePagination';
+import { PaginationOptions } from '../../utils/types';
 
 interface Props {
   rowsData: Object[];
@@ -65,11 +65,10 @@ const index = ({
         alignItems: 'center',
         columnGap: 2,
         flexWrap: 'wrap',
-      }}>
+      }}
+    >
       <View>
-        <Text>{`${
-          firstPageIndex + 1
-        } - ${lastPageIndex} of ${totalCount}`}</Text>
+        <Text>{`${firstPageIndex + 1} - ${lastPageIndex} of ${totalCount}`}</Text>
       </View>
 
       <TouchableOpacity
@@ -79,15 +78,21 @@ const index = ({
           borderRadius: 5,
           height: 25,
           width: 25,
-        }}>
-        <Text
-          style={{
-            fontSize: 18,
-            textAlign: 'center',
-            color: currentPage === 1 ? '#ccc' : 'black',
-          }}>
-          {paginationOptions.previousButtonIcon}
-        </Text>
+        }}
+      >
+        {typeof paginationOptions?.previousButtonIcon === 'string' ? (
+          <Text
+            style={{
+              fontSize: 18,
+              textAlign: 'center',
+              color: currentPage === 1 ? '#ccc' : 'black',
+            }}
+          >
+            {paginationOptions.previousButtonIcon}
+          </Text>
+        ) : (
+          paginationOptions?.previousButtonIcon
+        )}
       </TouchableOpacity>
 
       <View
@@ -95,7 +100,8 @@ const index = ({
           flexDirection: 'row',
           alignItems: 'center',
           columnGap: 2,
-        }}>
+        }}
+      >
         {paginationRange?.map((pageNumber: any, index: number) => {
           if (pageNumber === DOTS) {
             return (
@@ -118,11 +124,13 @@ const index = ({
                 justifyContent: 'center',
               }}
               onPress={() => onPageChange(pageNumber)}
-              key={`page-${index}-number-${pageNumber}`}>
+              key={`page-${index}-number-${pageNumber}`}
+            >
               <Text
                 style={{
                   color: pageNumber === currentPage ? '#1677ff' : 'black',
-                }}>
+                }}
+              >
                 {pageNumber}
               </Text>
             </TouchableOpacity>
@@ -137,15 +145,21 @@ const index = ({
           borderRadius: 5,
           height: 25,
           width: 25,
-        }}>
-        <Text
-          style={{
-            fontSize: 18,
-            textAlign: 'center',
-            color: currentPage === lastPage ? '#ccc' : 'black',
-          }}>
-          {paginationOptions.nextButtonIcon}
-        </Text>
+        }}
+      >
+        {typeof paginationOptions?.nextButtonIcon === 'string' ? (
+          <Text
+            style={{
+              fontSize: 18,
+              textAlign: 'center',
+              color: currentPage === lastPage ? '#ccc' : 'black',
+            }}
+          >
+            {paginationOptions.nextButtonIcon}
+          </Text>
+        ) : (
+          paginationOptions?.nextButtonIcon
+        )}
       </TouchableOpacity>
     </View>
   );

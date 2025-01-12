@@ -120,5 +120,4 @@ const ReactNativeTable = ({ columns, data, pageSize = 10, paginationOptions }: T
   );
 };
 
-export type { ReactNativeTableColumn, ReactNativeTableRowData };
 export default ReactNativeTable;

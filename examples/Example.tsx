@@ -1,12 +1,9 @@
 import React from 'react';
-import ReactNativeTable, {
-  ReactNativeTableColumn,
-  ReactNativeTableRowData,
-} from '../src/components/Table/ReactNativeTable';
-import {Image, Text, TouchableOpacity, View} from 'react-native';
+import ReactNativeTable from '../src/components/Table/ReactNativeTable';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 
 const Example = () => {
-  const columns: ReactNativeTableColumn[] = [
+  const columns = [
     {
       key: 1,
       dataIndex: 'rank',
@@ -31,10 +28,11 @@ const Example = () => {
               flexDirection: 'row',
               alignItems: 'center',
               columnGap: 2,
-            }}>
+            }}
+          >
             <Image
-              source={{uri: rowData.flagIcon}}
-              style={{width: 30, height: 20, borderRadius: 2}}
+              source={{ uri: rowData.flagIcon }}
+              style={{ width: 30, height: 20, borderRadius: 2 }}
               resizeMode="contain"
             />
             <Text>{rowData.country}</Text>
@@ -53,9 +51,7 @@ const Example = () => {
       dataIndex: 'gameName',
       headerName: 'Game Name',
       width: 150,
-      cellRenderer: (rowData: any) => (
-        <Text style={{fontWeight: 600}}>{rowData.gameName}</Text>
-      ),
+      cellRenderer: (rowData: any) => <Text style={{ fontWeight: 600 }}>{rowData.gameName}</Text>,
     },
     {
       key: 6,
@@ -70,18 +66,21 @@ const Example = () => {
               flexDirection: 'row',
               columnGap: 3,
               alignItems: 'center',
-            }}>
+            }}
+          >
             <TouchableOpacity
               style={{
                 backgroundColor: 'green',
                 padding: 2,
                 borderRadius: 5,
                 paddingHorizontal: 10,
-              }}>
+              }}
+            >
               <Text
                 style={{
                   color: 'white',
-                }}>
+                }}
+              >
                 Yes
               </Text>
             </TouchableOpacity>
@@ -91,11 +90,13 @@ const Example = () => {
                 padding: 2,
                 borderRadius: 5,
                 paddingHorizontal: 10,
-              }}>
+              }}
+            >
               <Text
                 style={{
                   color: 'white',
-                }}>
+                }}
+              >
                 No
               </Text>
             </TouchableOpacity>
@@ -105,7 +106,7 @@ const Example = () => {
     },
   ];
 
-  const data: ReactNativeTableRowData[] = [
+  const data = [
     {
       key: 1,
       name: 'Alice',
