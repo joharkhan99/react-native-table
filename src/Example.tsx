@@ -6,160 +6,6 @@ import ReactNativeTable, {
 import {Image, Text, TouchableOpacity, View} from 'react-native';
 
 const Example = () => {
-  const data: ReactNativeTableRowData[] = [
-    {
-      key: 1,
-      rank: 1,
-      profilePicture:
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/VeKings.png/220px-VeKings.png',
-      username: 'Mike Khan',
-      availableMoney: {
-        test: 1,
-      },
-    },
-    {
-      key: 2,
-      rank: 2,
-      profilePicture:
-        'https://d2gwgwt9a7yxle.cloudfront.net/what_is_user_id_in_net_banking_mobile_871b681e52.jpg',
-      username: 'Jason Smith',
-      availableMoney: '1.5M',
-    },
-    {
-      key: 3,
-      rank: 3,
-      profilePicture: 'https://cdn-icons-png.flaticon.com/512/147/147144.png',
-      username: 'Sophia Taylor',
-      availableMoney: '750K',
-    },
-    {
-      key: 4,
-      rank: 4,
-      profilePicture: 'https://cdn-icons-png.flaticon.com/512/2922/2922506.png',
-      username: 'Oliver Brown',
-      availableMoney: '1.2M',
-    },
-    {
-      key: 5,
-      rank: 5,
-      profilePicture: 'https://cdn-icons-png.flaticon.com/512/2922/2922510.png',
-      username: 'Emma Wilson',
-      availableMoney: '300K',
-    },
-    {
-      key: 6,
-      rank: 6,
-      profilePicture: 'https://cdn-icons-png.flaticon.com/512/2922/2922522.png',
-      username: 'Liam Johnson',
-      availableMoney: '2M',
-    },
-    {
-      key: 7,
-      rank: 7,
-      profilePicture: 'https://cdn-icons-png.flaticon.com/512/2922/2922505.png',
-      username: 'Ava Davis',
-      availableMoney: '1.8M',
-    },
-    {
-      rank: 8,
-      key: 8,
-      profilePicture: 'https://cdn-icons-png.flaticon.com/512/2922/2922502.png',
-      username: 'Noah Martinez',
-      availableMoney: '500K',
-    },
-    {
-      key: 9,
-      rank: 9,
-      profilePicture: 'https://cdn-icons-png.flaticon.com/512/2922/2922509.png',
-      username: 'Isabella Garcia',
-      availableMoney: '750K',
-    },
-    {
-      key: 10,
-      rank: 10,
-      profilePicture: 'https://cdn-icons-png.flaticon.com/512/2922/2922521.png',
-      username: 'Ethan Rodriguez',
-      availableMoney: '1.1M',
-    },
-    {
-      key: 11,
-      rank: 11,
-      profilePicture: 'https://cdn-icons-png.flaticon.com/512/2922/2922517.png',
-      username: 'Mia Hernandez',
-      availableMoney: '600K',
-    },
-    {
-      key: 12,
-      rank: 12,
-      profilePicture: 'https://cdn-icons-png.flaticon.com/512/2922/2922519.png',
-      username: 'James White',
-      availableMoney: '950K',
-    },
-    {
-      key: 13,
-      rank: 13,
-      profilePicture: 'https://cdn-icons-png.flaticon.com/512/2922/2922513.png',
-      username: 'Charlotte Lee',
-      availableMoney: '1.6M',
-    },
-    {
-      key: 14,
-      rank: 14,
-      profilePicture: 'https://cdn-icons-png.flaticon.com/512/2922/2922523.png',
-      username: 'Benjamin Walker',
-      availableMoney: '800K',
-    },
-    {
-      key: 15,
-      rank: 15,
-      profilePicture: 'https://cdn-icons-png.flaticon.com/512/2922/2922516.png',
-      username: 'Amelia Hall',
-      availableMoney: '1.3M',
-    },
-    {
-      key: 16,
-      rank: 16,
-      profilePicture: 'https://cdn-icons-png.flaticon.com/512/2922/2922518.png',
-      username: 'Lucas Young',
-      availableMoney: '700K',
-    },
-    {
-      key: 17,
-      rank: 17,
-      profilePicture: 'https://cdn-icons-png.flaticon.com/512/2922/2922507.png',
-      username: 'Harper King',
-      availableMoney: '1M',
-    },
-    {
-      key: 18,
-      rank: 14,
-      profilePicture: 'https://cdn-icons-png.flaticon.com/512/2922/2922523.png',
-      username: 'Benjamin Walker',
-      availableMoney: '800K',
-    },
-    {
-      key: 19,
-      rank: 15,
-      profilePicture: 'https://cdn-icons-png.flaticon.com/512/2922/2922516.png',
-      username: 'Amelia Hall',
-      availableMoney: '1.3M',
-    },
-    {
-      key: 20,
-      rank: 16,
-      profilePicture: 'https://cdn-icons-png.flaticon.com/512/2922/2922518.png',
-      username: 'Lucas Young',
-      availableMoney: '700K',
-    },
-    {
-      key: 21,
-      rank: 17,
-      profilePicture: 'https://cdn-icons-png.flaticon.com/512/2922/2922507.png',
-      username: 'Harper King',
-      availableMoney: '1M',
-    },
-  ];
-
   const columns: ReactNativeTableColumn[] = [
     {
       key: 1,
@@ -169,61 +15,280 @@ const Example = () => {
     },
     {
       key: 2,
-      dataIndex: 'profilePicture',
-      headerName: 'Image',
-      width: 70,
-      cellRenderer: (rowData: any) => {
-        let jsx = (
-          <TouchableOpacity
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'flex-start',
-              alignItems: 'center',
-            }}>
-            <View>
-              <Image
-                src={rowData.profilePicture}
-                style={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: 100,
-                }}
-                resizeMode="cover"
-              />
-            </View>
-          </TouchableOpacity>
-        );
-        return jsx;
-      },
+      dataIndex: 'name',
+      headerName: 'Name',
+      width: 100,
     },
     {
       key: 3,
-      dataIndex: 'username',
-      headerName: 'Username',
-      width: 100,
+      dataIndex: 'country',
+      headerName: 'Country',
+      width: 150,
       cellRenderer: (rowData: any) => {
-        let jsx = (
-          <View>
-            <Text
-              style={{
-                fontWeight: 900,
-              }}>
-              {rowData.username}
-            </Text>
+        return (
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              columnGap: 2,
+            }}>
+            <Image
+              source={{uri: rowData.flagIcon}}
+              style={{width: 30, height: 20, borderRadius: 2}}
+              resizeMode="contain"
+            />
+            <Text>{rowData.country}</Text>
           </View>
         );
-        return jsx;
       },
     },
     {
       key: 4,
-      dataIndex: 'availableMoney',
-      headerName: 'Available',
+      dataIndex: 'language',
+      headerName: 'Language',
+      width: 100,
+    },
+    {
+      key: 5,
+      dataIndex: 'gameName',
+      headerName: 'Game Name',
       width: 150,
+      cellRenderer: (rowData: any) => (
+        <Text style={{fontWeight: 600}}>{rowData.gameName}</Text>
+      ),
+    },
+    {
+      key: 6,
+      dataIndex: 'actionButtons',
+      headerName: 'Actions',
+      isHeaderNameHidden: true,
+      width: 150,
+      cellRenderer: (rowData: any) => {
+        return (
+          <View
+            style={{
+              flexDirection: 'row',
+              columnGap: 3,
+              alignItems: 'center',
+            }}>
+            <TouchableOpacity
+              style={{
+                backgroundColor: 'green',
+                padding: 2,
+                borderRadius: 5,
+                paddingHorizontal: 10,
+              }}>
+              <Text
+                style={{
+                  color: 'white',
+                }}>
+                Yes
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                backgroundColor: 'red',
+                padding: 2,
+                borderRadius: 5,
+                paddingHorizontal: 10,
+              }}>
+              <Text
+                style={{
+                  color: 'white',
+                }}>
+                No
+              </Text>
+            </TouchableOpacity>
+          </View>
+        );
+      },
     },
   ];
 
-  return <ReactNativeTable data={data} columns={columns} pageSize={4} />;
+  const data: ReactNativeTableRowData[] = [
+    {
+      key: 1,
+      name: 'Alice',
+      language: 'English',
+      country: 'United States',
+      flagIcon: 'https://flagcdn.com/w320/us.png',
+      gameName: 'Chess',
+      rank: 5,
+    },
+    {
+      key: 2,
+      name: 'Bob',
+      language: 'Spanish',
+      country: 'Spain',
+      flagIcon: 'https://flagcdn.com/w320/es.png',
+      gameName: 'Football',
+      rank: 2,
+    },
+    {
+      key: 3,
+      name: 'Charlie',
+      language: 'French',
+      country: 'France',
+      flagIcon: 'https://flagcdn.com/w320/fr.png',
+      gameName: 'Tennis',
+      rank: 8,
+    },
+    {
+      key: 4,
+      name: 'David',
+      language: 'German',
+      country: 'Germany',
+      flagIcon: 'https://flagcdn.com/w320/de.png',
+      gameName: 'Basketball',
+      rank: 4,
+    },
+    {
+      key: 5,
+      name: 'Eve',
+      language: 'Italian',
+      country: 'Italy',
+      flagIcon: 'https://flagcdn.com/w320/it.png',
+      gameName: 'Volleyball',
+      rank: 7,
+    },
+    {
+      key: 6,
+      name: 'Frank',
+      language: 'Japanese',
+      country: 'Japan',
+      flagIcon: 'https://flagcdn.com/w320/jp.png',
+      gameName: 'Karate',
+      rank: 1,
+    },
+    {
+      key: 7,
+      name: 'Grace',
+      language: 'Mandarin',
+      country: 'China',
+      flagIcon: 'https://flagcdn.com/w320/cn.png',
+      gameName: 'Table Tennis',
+      rank: 3,
+    },
+    {
+      key: 8,
+      name: 'Hank',
+      language: 'Korean',
+      country: 'South Korea',
+      flagIcon: 'https://flagcdn.com/w320/kr.png',
+      gameName: 'Taekwondo',
+      rank: 9,
+    },
+    {
+      key: 9,
+      name: 'Ivy',
+      language: 'Russian',
+      country: 'Russia',
+      flagIcon: 'https://flagcdn.com/w320/ru.png',
+      gameName: 'Ice Hockey',
+      rank: 6,
+    },
+    {
+      key: 10,
+      name: 'Jack',
+      language: 'Portuguese',
+      country: 'Brazil',
+      flagIcon: 'https://flagcdn.com/w320/br.png',
+      gameName: 'Football',
+      rank: 10,
+    },
+    {
+      key: 11,
+      name: 'Kathy',
+      language: 'Arabic',
+      country: 'Saudi Arabia',
+      flagIcon: 'https://flagcdn.com/w320/sa.png',
+      gameName: 'Horse Racing',
+      rank: 12,
+    },
+    {
+      key: 12,
+      name: 'Leo',
+      language: 'Hindi',
+      country: 'India',
+      flagIcon: 'https://flagcdn.com/w320/in.png',
+      gameName: 'Cricket',
+      rank: 11,
+    },
+    {
+      key: 13,
+      name: 'Mona',
+      language: 'Dutch',
+      country: 'Netherlands',
+      flagIcon: 'https://flagcdn.com/w320/nl.png',
+      gameName: 'Cycling',
+      rank: 14,
+    },
+    {
+      key: 14,
+      name: 'Nina',
+      language: 'Turkish',
+      country: 'Turkey',
+      flagIcon: 'https://flagcdn.com/w320/tr.png',
+      gameName: 'Wrestling',
+      rank: 15,
+    },
+    {
+      key: 15,
+      name: 'Oscar',
+      language: 'Greek',
+      country: 'Greece',
+      flagIcon: 'https://flagcdn.com/w320/gr.png',
+      gameName: 'Marathon',
+      rank: 13,
+    },
+    {
+      key: 16,
+      name: 'Paul',
+      language: 'Thai',
+      country: 'Thailand',
+      flagIcon: 'https://flagcdn.com/w320/th.png',
+      gameName: 'Muay Thai',
+      rank: 16,
+    },
+    {
+      key: 17,
+      name: 'Quinn',
+      language: 'Hebrew',
+      country: 'Israel',
+      flagIcon: 'https://flagcdn.com/w320/il.png',
+      gameName: 'Surfing',
+      rank: 18,
+    },
+    {
+      key: 18,
+      name: 'Rita',
+      language: 'Swedish',
+      country: 'Sweden',
+      flagIcon: 'https://flagcdn.com/w320/se.png',
+      gameName: 'Ice Skating',
+      rank: 17,
+    },
+    {
+      key: 19,
+      name: 'Steve',
+      language: 'Vietnamese',
+      country: 'Vietnam',
+      flagIcon: 'https://flagcdn.com/w320/vn.png',
+      gameName: 'Dragon Boat Racing',
+      rank: 19,
+    },
+    {
+      key: 20,
+      name: 'Johar Khan',
+      language: 'Pashto',
+      country: 'Pakistan',
+      flagIcon: 'https://flagcdn.com/w320/pk.png',
+      gameName: 'Skiing',
+      rank: 99,
+    },
+  ];
+
+  return <ReactNativeTable data={data} columns={columns} pageSize={7} />;
 };
 
 export default Example;

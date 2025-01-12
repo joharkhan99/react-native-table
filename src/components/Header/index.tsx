@@ -1,8 +1,9 @@
 import React from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
+import {ReactNativeTableColumn} from '../Table/ReactNativeTable';
 
 interface Props {
-  col: any;
+  col: ReactNativeTableColumn;
 }
 
 const index = ({col}: Props) => {
@@ -13,15 +14,22 @@ const index = ({col}: Props) => {
         flexDirection: 'row',
         width: col.width,
       }}>
-      <TouchableOpacity
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'flex-start',
-          columnGap: 1,
-        }}>
-        <Text>{col.headerName}</Text>
-      </TouchableOpacity>
+      {!col.isHeaderNameHidden ? (
+        <TouchableOpacity
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+            columnGap: 1,
+          }}>
+          <Text
+            style={{
+              fontWeight: 500,
+            }}>
+            {col.headerName}
+          </Text>
+        </TouchableOpacity>
+      ) : null}
     </View>
   );
 };

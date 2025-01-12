@@ -4,6 +4,7 @@ export interface ReactNativeTableColumn {
   key: string | number;
   width?: number;
   cellRenderer?: (rowData: any) => React.ReactNode;
+  isHeaderNameHidden?: boolean
 }
 
 export interface ReactNativeTableRowData {
