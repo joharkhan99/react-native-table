@@ -1,7 +1,23 @@
 {
-  "name": "ReactNativeTable",
+  "name": "@joharkhan/react-native-table",
   "version": "0.0.1",
-  "private": true,
+  "private": false,
+  "description": "A highly customizable table component for React Native with support for custom cell rendering, filtering, sorting, pagination, and more.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joharkhan99/react-native-table.git"
+  },
+  "keywords": [
+    "react-native-table",
+    "table-package",
+    "expo-table-component"
+  ],
+  "author": "Johar Khan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joharkhan99/react-native-table/issues"
+  },
+  "homepage": "https://github.com/joharkhan99/react-native-table#readme",
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
