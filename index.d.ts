@@ -28,6 +28,7 @@ declare module '@joharkhan/react-native-table' {
       | 'space-evenly';
     nextButtonIcon?: ReactNode | string;
     previousButtonIcon?: ReactNode | string;
+    siblingCount?: number;
   }
 
   // Table Component Props

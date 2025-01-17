@@ -4,7 +4,7 @@ export interface ReactNativeTableColumn {
   key: string | number;
   width?: number;
   cellRenderer?: (rowData: any) => React.ReactNode;
-  isHeaderNameHidden?: boolean
+  isHeaderNameHidden?: boolean;
 }
 
 export interface ReactNativeTableRowData {
@@ -13,7 +13,14 @@ export interface ReactNativeTableRowData {
 }
 
 export interface PaginationOptions {
-  position?: "center" | "flex-start" | "flex-end" | "space-around" | "space-between" | "space-evenly";
+  position?:
+    | 'center'
+    | 'flex-start'
+    | 'flex-end'
+    | 'space-around'
+    | 'space-between'
+    | 'space-evenly';
   nextButtonIcon?: React.ReactNode | string;
   previousButtonIcon?: React.ReactNode | string;
+  siblingCount?: number;
 }

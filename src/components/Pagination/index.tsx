@@ -19,16 +19,18 @@ const defaultPaginationOptions: PaginationOptions = {
   position: 'flex-end',
   nextButtonIcon: '>',
   previousButtonIcon: '<',
+  siblingCount: 0,
 };
 
 const index = ({
   onPageChange,
   totalCount,
-  siblingCount = 0,
   currentPage,
   pageSize,
   paginationOptions = {},
 }: Props) => {
+  const siblingCount = paginationOptions.siblingCount || 0;
+
   const paginationRange = usePagination({
     currentPage,
     totalCount,
