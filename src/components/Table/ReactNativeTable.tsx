@@ -3,20 +3,16 @@ import { Dimensions, ScrollView, View } from 'react-native';
 import Header from '../Header';
 import Row from '../Row';
 import Pagination from '../Pagination';
-import {
-  PaginationOptions,
-  ReactNativeTableColumn,
-  ReactNativeTableRowData,
-} from '../../utils/types';
+import { ReactNativeTableColumn, ReactNativeTableRowData, TableProps } from '../../utils/types';
 
-interface TableProps {
-  columns: ReactNativeTableColumn[];
-  data: ReactNativeTableRowData[];
-  pageSize?: number;
-  paginationOptions?: PaginationOptions;
-}
-
-const ReactNativeTable = ({ columns, data, pageSize = 10, paginationOptions }: TableProps) => {
+const ReactNativeTable = ({
+  columns,
+  data,
+  pageSize = 10,
+  paginationOptions,
+  tableBorder,
+  rowVerticalPadding = 5,
+}: TableProps) => {
   const [rowsData, setRowsData] = useState<ReactNativeTableRowData[]>([]);
   const [columnsData, setColumnsData] = useState<ReactNativeTableColumn[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -53,7 +49,10 @@ const ReactNativeTable = ({ columns, data, pageSize = 10, paginationOptions }: T
                 style={{
                   flexDirection: 'column',
                   alignItems: 'flex-start',
-                  rowGap: 5,
+                  borderWidth: tableBorder?.width,
+                  borderColor: tableBorder?.color,
+                  borderRadius: tableBorder?.borderRadius,
+                  borderStyle: tableBorder?.style,
                 }}
               >
                 {/* header/column */}
@@ -61,8 +60,11 @@ const ReactNativeTable = ({ columns, data, pageSize = 10, paginationOptions }: T
                   style={{
                     flexDirection: 'row',
                     justifyContent: 'flex-start',
-                    alignItems: 'flex-end',
-                    columnGap: 10,
+                    alignItems: 'center',
+                    borderBottomWidth: tableBorder?.width,
+                    borderColor: tableBorder?.color,
+                    borderStyle: tableBorder?.style,
+                    paddingVertical: rowVerticalPadding,
                   }}
                 >
                   {columnsData.map((col: ReactNativeTableColumn) => {
@@ -78,14 +80,19 @@ const ReactNativeTable = ({ columns, data, pageSize = 10, paginationOptions }: T
                       flexDirection: 'row',
                       justifyContent: 'flex-start',
                       alignItems: 'center',
-                      columnGap: 10,
+                      borderWidth: 0,
+                      borderBottomWidth:
+                        currenTableData.length - 1 == index ? 0 : tableBorder?.width,
+                      borderColor: tableBorder?.color,
+                      borderStyle: tableBorder?.style,
+                      paddingVertical: rowVerticalPadding,
                     }}
                   >
                     {columnsData.map((col: ReactNativeTableColumn, index: number) => {
                       return (
                         <View
                           style={{
-                            width: col.width,
+                            width: col.width ?? 100,
                           }}
                           key={`rn-cell-${rowData.key}-${col.key}-${index}`}
                         >

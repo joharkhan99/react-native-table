@@ -1,6 +1,6 @@
 {
   "name": "@joharkhan/react-native-table",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": false,
   "description": "A highly customizable table component for React Native with support for custom cell rendering, filtering, sorting, pagination, and more.",
   "repository": {

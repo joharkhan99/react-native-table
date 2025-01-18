@@ -7,6 +7,20 @@ export interface ReactNativeTableColumn {
   isHeaderNameHidden?: boolean;
 }
 
+export interface TableProps {
+  columns: ReactNativeTableColumn[];
+  data: ReactNativeTableRowData[];
+  pageSize?: number;
+  paginationOptions?: PaginationOptions;
+  tableBorder?: {
+    width?: number;
+    color?: string;
+    borderRadius?: number;
+    style?: 'solid' | 'dotted' | 'dashed';
+  };
+  rowVerticalPadding?: number;
+}
+
 export interface ReactNativeTableRowData {
   key: string | number;
   [key: string]: any;

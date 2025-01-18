@@ -37,6 +37,13 @@ declare module '@joharkhan/react-native-table' {
     data: ReactNativeTableRowData[];
     pageSize?: number;
     paginationOptions?: PaginationOptions;
+    tableBorder?: {
+      width?: number;
+      color?: string;
+      borderRadius?: number;
+      style?: 'solid' | 'dotted' | 'dashed';
+    };
+    rowVerticalPadding?: number;
   }
 
   // Table Component

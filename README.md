@@ -231,6 +231,48 @@ const Example = () => {
 
 You can find an example file in the `examples` folder. This example demonstrates how to use the table component in a React Native application with sample data, column definitions, and styles.
 
+## Props Explanation
+
+The table component provides several props to customize its behavior and appearance. Below is a detailed explanation of each prop:
+
+| **Prop**             | **Type**                                                                                             | **Required** | **Description**                                                                                                              |
+| -------------------- | ---------------------------------------------------------------------------------------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------- |
+| `columns`            | `ReactNativeTableColumn[]`                                                                           | Yes          | Defines the structure of the table columns, including header names, data fields, widths, and custom renderers.               |
+| `data`               | `ReactNativeTableRowData[]`                                                                          | Yes          | The data to be displayed in the table. Each object represents a row, and its keys must match the `dataIndex` of the columns. |
+| `pageSize`           | `number`                                                                                             | No           | Specifies the number of rows to display per page for pagination. Default is `10`.                                            |
+| `paginationOptions`  | `PaginationOptions`                                                                                  | No           | Customizes the appearance and behavior of pagination controls, including their position and icons.                           |
+| `tableBorder`        | `{ width?: number; color?: string; borderRadius?: number; style?: 'solid' \| 'dotted' \| 'dashed' }` | No           | Defines the border style for the table, including width, color, and style. Default is no border.                             |
+| `rowVerticalPadding` | `number`                                                                                             | No           | Sets the vertical padding for each row in the table. Default is `5`.                                                         |
+
+### Column Definition (`ReactNativeTableColumn`)
+
+| **Property**         | **Type**                            | **Required** | **Description**                                                                        |
+| -------------------- | ----------------------------------- | ------------ | -------------------------------------------------------------------------------------- |
+| `dataIndex`          | `string`                            | Yes          | The key in the row data object to be displayed in this column.                         |
+| `headerName`         | `string`                            | Yes          | The name to be displayed as the column header.                                         |
+| `key`                | `string \| number`                  | Yes          | A unique key for the column, used for React rendering optimizations.                   |
+| `width`              | `number`                            | No           | The width of the column in pixels. Default is `100`.                                   |
+| `cellRenderer`       | `(rowData: any) => React.ReactNode` | No           | A function to render custom content in the cell. Receives the row data as an argument. |
+| `isHeaderNameHidden` | `boolean`                           | No           | Hides the column header name if set to `true`. Default is `false`.                     |
+
+### Row Data Definition (`ReactNativeTableRowData`)
+
+| **Property**         | **Type**           | **Required** | **Description**                                                                                                             |
+| -------------------- | ------------------ | ------------ | --------------------------------------------------------------------------------------------------------------------------- |
+| `key`                | `string \| number` | Yes          | A unique identifier for each row in the table. This key is used to differentiate rows.                                      |
+| `[key: string]: any` | `Any`              | No           | Custom data fields that correspond to the `dataIndex` values defined in the `columns` prop. Allows for dynamic row content. |
+
+---
+
+### Pagination Options (`PaginationOptions`)
+
+| **Property**         | **Type**                                                                                        | **Required** | **Description**                                                                                          |
+| -------------------- | ----------------------------------------------------------------------------------------------- | ------------ | -------------------------------------------------------------------------------------------------------- |
+| `position`           | `'center' \| 'flex-start' \| 'flex-end' \| 'space-around' \| 'space-between' \| 'space-evenly'` | No           | Defines the alignment of the pagination controls within the table footer.                                |
+| `nextButtonIcon`     | `React.ReactNode \| string`                                                                     | No           | A custom icon or text to use for the "Next" button. Defaults to a right arrow text if not specified.     |
+| `previousButtonIcon` | `React.ReactNode \| string`                                                                     | No           | A custom icon or text to use for the "Previous" button. Defaults to a left arrow text if not specified.  |
+| `siblingCount`       | `number`                                                                                        | No           | The number of page buttons to display on each side of the current page button in the pagination control. |
+
 ## Contributing
 
 We welcome contributions to improve this project! If you'd like to contribute, please follow these steps:
